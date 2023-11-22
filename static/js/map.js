@@ -43,7 +43,6 @@ for (var i = 0; i < place.length; i++) {
     "type": "Feature",
     "properties": {
       "icon": getPinIcon(POSES[i]["pinType"]),
-      //"name": place[i].name
     },
     "geometry": {
       "type": "Point",
@@ -59,52 +58,47 @@ function getPinIcon(pinType) {
       iconUrl: '../static/ico/oshikey.png',
       iconRetinaUrl: '../static/ico/oshikey.png',
       iconSize: [73.7, 135],
-      iconAnchor: [60, 120],
-      popupAnchor: [60, 120],
+      iconAnchor: [35, 120],
+      popupAnchor: [0, -70]
     });
   } else if (pinType === 'goods.png') {
     return L.icon({
       iconUrl: '../static/ico/goods.png',
       iconRetinaUrl: '../static/ico/goods.png',
       iconSize: [73.7, 135],
-      iconAnchor: [60, 120],
-      popupAnchor: [60, 120],
+      iconAnchor: [35, 120],
+      popupAnchor: [0, -70]
     });
   } else if (pinType === 'place.png') {
     return L.icon({
       iconUrl: '../static/ico/place.png',
       iconRetinaUrl: '../static/ico/place.png',
       iconSize: [73.7, 135],
-      iconAnchor: [60, 120],
-      popupAnchor: [60, 120],
+      iconAnchor: [35, 120],
+      popupAnchor: [0, -70]
     });
   }
 }
 
 L.geoJson(features, {
   onEachFeature: function (features, layer) {
-    if (features.properties && features.properties.name) {
-      layer.bindPopup(features.properties.name);
-      layer.on('mouseover', function (e) {
-        this.openPopup();
-      });
-      layer.on('mouseout', function (e) {
-        this.closePopup();
-      });
-      layer.on('click', function (e) {
-        alert('ここにゴミ捨てるの?');
-      });
-    }
-  },
-  // アイコンの指定があれば指定したアイコンを設置する
+    layer.bindPopup(function () {
+      var poseInfo = POSES.find(p => p.lat === parseFloat(features.geometry.coordinates[1]) && p.long === parseFloat(features.geometry.coordinates[0]));
 
+      // 画像を表示するHTML要素を作成
+      var uploadedimage = '<img src="../static/img/' + poseInfo.filename + '" alt="アップロード画像" style="width: 200px; height: auto;">';
+      var tagimage = '<img src="../static/ico/' + poseInfo.tagType + '" alt="タグ" style="width: 50px; height: auto;">';
+
+      return uploadedimage + '<br>' + '<b>場所名:</b> ' + poseInfo.location + '<br>' +
+        '<b>コンテンツ:</b> ' + poseInfo.content + '<br>' +
+        '<b>タグ:</b> ' + '<br>' + tagimage + '<br>' +
+        '<b>備考:</b> ' + poseInfo.remarks + '<br>';
+    });
+  },
   pointToLayer: function (feature, latlng) {
-    // アイコンの指定があれば指定したアイコンを設置する
     if (feature.properties.icon) {
-      //alert(1) 1があるためアイコンが指定はされている。
       return L.marker(latlng, { icon: feature.properties.icon });
     } else {
-      //alert(2)
       return L.marker(latlng);
     }
   }

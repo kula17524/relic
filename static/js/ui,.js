@@ -48,6 +48,7 @@ circularMenuControl.onAdd = function (map) {
   var menuItem1 = L.DomUtil.create("a", "menu-item", itemsWrapper);
   menuItem1.onclick = function () {
     opencloseSidebar1();
+    draggoff();
   };
   menuItem1.innerHTML = '<button><i class="fa-solid fa-plus"></i></button>';
 
@@ -89,7 +90,7 @@ sidebarControl.onAdd = function (map) {
       <div id="calculator">
         <div class="element" data-element="file_upload01" data-conditionalelement="undefined"
           data-conditionalelementvalue="undefined"><label style="color:#333333">file_upload01</label>
-          <input id="fileinput" class="calc-prop" data-identifier="file_upload01" data-isrequired="false" type="file" name="file" accept=".jpg" onchange="gpsCheck(this)">
+          <input id="fileinput" class="calc-prop" data-identifier="file_upload01" data-isrequired="false" type="file" name="file" accept=".jpg">
         </div>
       </div>
       <p>ピンの種類 <span class="required">*</span></p>
