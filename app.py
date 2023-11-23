@@ -94,7 +94,7 @@ def upload_file():
                     Poses.append({'lat': row[0], 'long': row[1],'location': row[2], 'content': row[3],'pinType': row[4], 'tagType': row[5],'remarks': row[6],'filename': row[7]})
 
             except ValueError as e:
-                flash(str(e), "failed3")
+                flash(str(e), "error")
                 return redirect(request.url)
 
             return redirect(request.url)

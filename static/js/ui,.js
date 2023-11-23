@@ -4,7 +4,8 @@ titleControl.onAdd = function (map) {
   this.ele = L.DomUtil.create("div", "title-control");
   this.ele.id = "title";
   this.ele.className = "title-Logo";
-  this.ele.innerHTML = "<img src='../static/logo/logo2.png' width='20%' height='auto' alt='title_logo'>";
+  this.ele.innerHTML = "<img src='../static/logo/logo2.png' alt='title_logo'>";
+  this.ele.style.zIndex = 999;
   return this.ele;
 };
 
@@ -48,7 +49,6 @@ circularMenuControl.onAdd = function (map) {
   var menuItem1 = L.DomUtil.create("a", "menu-item", itemsWrapper);
   menuItem1.onclick = function () {
     opencloseSidebar1();
-    draggoff();
   };
   menuItem1.innerHTML = '<button><i class="fa-solid fa-plus"></i></button>';
 

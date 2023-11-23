@@ -1,6 +1,7 @@
 var map = L.map('mapid', {
   center: [35.66572, 139.73100],
   zoom: 17,
+  zoomControl: false, // 拡大縮小コントロールを非表示にする
 });
 
 var tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -8,16 +9,6 @@ var tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 });
 
 tileLayer.addTo(map);
-
-
-// Control OSM Geocode+
-var option = {
-  position: 'topright',
-  text: '検索',
-  placeholder: '検索条件を入力してください。'
-}
-var osmGeocoder = new L.Control.OSMGeocoder(option);
-map.addControl(osmGeocoder);
 
 
 var features = [];
@@ -87,7 +78,7 @@ L.geoJson(features, {
 
       // 画像を表示するHTML要素を作成
       var uploadedimage = '<img src="../static/img/' + poseInfo.filename + '" alt="アップロード画像" style="width: 200px; height: auto;">';
-      var tagimage = '<img src="../static/ico/' + poseInfo.tagType + '" alt="タグ" style="width: 50px; height: auto;">';
+      var tagimage = '<img class="tagimg" src="../static/ico/' + poseInfo.tagType + '" alt="タグ" style="width: 50%; height: auto;">';
 
       return uploadedimage + '<br>' + '<b>場所名:</b> ' + poseInfo.location + '<br>' +
         '<b>コンテンツ:</b> ' + poseInfo.content + '<br>' +
