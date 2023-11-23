@@ -24,7 +24,7 @@ def create_books_table():
     #conは、データベースへ接続するためのオブジェクト(コネクションオブジェクト)
 
     #エラーにならないように IF NOT EXIST を記述する
-    con.execute("CREATE TABLE IF NOT EXISTS Poses (long, lat, location, content, pinType, tagType, remarks, filename)") #テーブル作成のSQL文
+    con.execute("CREATE TABLE IF NOT EXISTS Poses (long, lat, location, content, pinType, tagType, remarks, filename, address)") #テーブル作成のSQL文
     #longが緯度、latが経度
     #longが緯度、latが経度
     con.close() #データベースとの接続を閉じる。
@@ -46,7 +46,7 @@ def upload_file():
 
     Poses = []
     for row in DB_Poses:
-        Poses.append({'lat': row[0], 'long': row[1],'location': row[2], 'content': row[3],'pinType': row[4], 'tagType': row[5],'remarks': row[6],'filename': row[7]})
+        Poses.append({'lat': row[0], 'long': row[1],'location': row[2], 'content': row[3],'pinType': row[4], 'tagType': row[5],'remarks': row[6],'filename': row[7], 'address': row[8]})
 
     if request.method == 'POST':
         # フォームからデータを取得
@@ -81,17 +81,23 @@ def upload_file():
 
                 Long = round(gpsdata[0], 7)
                 Lat = round(gpsdata[1], 7)
+                Longtitude = round(gpsdata[0], 4)
+                Latitude = round(gpsdata[1], 4)
+                print(Longtitude)
+                print(Latitude)
+
+                address = gps_info.search_address("dj00aiZpPWhNeTlXMkwwTVFodCZzPWNvbnN1bWVyc2VjcmV0Jng9OWM-", Longtitude,Latitude)
 
                 con = sqlite3.connect(DATABESE)
-                con.execute('INSERT INTO Poses VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-                            [Long, Lat, location, content, pinType, tagType, remarks, filename])
+                con.execute('INSERT INTO Poses VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                            [Long, Lat, location, content, pinType, tagType, remarks, filename, address])
                 con.commit()
 
                 DB_Poses = con.execute('SELECT * FROM Poses').fetchall()
                 con.close()
 
                 for row in DB_Poses:
-                    Poses.append({'lat': row[0], 'long': row[1],'location': row[2], 'content': row[3],'pinType': row[4], 'tagType': row[5],'remarks': row[6],'filename': row[7]})
+                    Poses.append({'lat': row[0], 'long': row[1],'location': row[2], 'content': row[3],'pinType': row[4], 'tagType': row[5],'remarks': row[6],'filename': row[7], 'address': row[8]})
 
             except ValueError as e:
                 flash(str(e), "error")
