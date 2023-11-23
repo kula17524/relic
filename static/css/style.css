@@ -503,3 +503,129 @@ input#fileinput.calc-prop[name="file"] {
 		width: 100%;
 	}
 }
+
+@media screen and (max-width: 1024px) {
+	.element[data-element="file_format"] {
+		margin: 20px;
+		width: calc(100% - 40px) !important;
+	}
+
+	#calculator .element[data-element="file_upload01"] label,
+	#calculator .element[data-element="file_upload02"] label {
+		width: 100% !important;
+		margin: 5px 0 !important;
+	}
+}
+
+/* ヘルプ */
+.help-header {
+	font-family: "MyFont", sans-serif;
+}
+
+.wrapper {
+	max-width: 600px;
+}
+
+.details {
+	border: 2px solid #000000;
+	border-radius: 5px;
+	font-family: "MyFont", sans-serif;
+}
+
+.details+.details {
+	margin-top: 1em;
+}
+
+summary::-webkit-details-marker {
+	display: none;
+}
+
+.summary {
+	cursor: pointer;
+	color: #000000;
+	background-color: #fff;
+	padding: 0.5em 1em;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+	gap: 1em;
+	/* アイコンのはみ出し防止 */
+	overflow: hidden;
+	font-size: 20px;
+}
+
+.summary:hover,
+.summary:focus {
+	background-color: #eee;
+}
+
+@media screen and (max-width: 610px) {
+	.summary {
+		font-size: 15px;
+	}
+}
+
+.summary::before,
+.summary::after {
+	/* アイコンの位置:1or2 */
+	grid-column: 2;
+	grid-row: 1;
+	justify-self: end;
+	content: "";
+	width: 18px;
+	border-bottom: 3px solid #333;
+}
+
+.summary:hover::before,
+.summary:focus::before,
+.summary:hover::after,
+.summary:focus::after {
+	width: 25px;
+	transition: all 0.3s;
+	transition-timing-function: ease;
+}
+
+.summary::before {
+	transform: rotate(-90deg);
+	transition: transform 0.3s;
+}
+
+.is-open .summary::before {
+	transform: rotate(0deg);
+}
+
+.details-content {
+	box-sizing: content-box;
+	overflow: hidden;
+	margin: 0;
+	padding: 0 1em;
+	opacity: 0;
+	transition: padding 0.2s ease 0.1s, max-height 0.3s, opacity 0.7s;
+}
+
+.is-open .details-content {
+	padding-block: 1em;
+	opacity: 1;
+	transition: padding 0.3s, max-height 0.3s, opacity 0.7s;
+}
+
+.details-content p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.2em;
+	color: #333333;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.help-img-wrap {
+	width: 100%;
+	text-align: center;
+}
+
+.help-pin {
+	width: 50%;
+	height: auto;
+	margin: auto;
+}
