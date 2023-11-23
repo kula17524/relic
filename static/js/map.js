@@ -77,13 +77,13 @@ L.geoJson(features, {
       var poseInfo = POSES.find(p => p.lat === parseFloat(features.geometry.coordinates[1]) && p.long === parseFloat(features.geometry.coordinates[0]));
 
       // 画像を表示するHTML要素を作成
-      var uploadedimage = '<img src="../static/img/' + poseInfo.filename + '" alt="アップロード画像" style="width: 200px; height: auto;">';
+      var uploadedimage = '<img src="../static/img/' + poseInfo.filename + '" alt="アップロード画像" style="width: 50%; height: auto;">';
       var tagimage = '<img class="tagimg" src="../static/ico/' + poseInfo.tagType + '" alt="タグ" style="width: 50%; height: auto;">';
 
-      return uploadedimage + '<br>' + '<b>場所名:</b> ' + poseInfo.location + '<br>' +
-        '<b>コンテンツ:</b> ' + poseInfo.content + '<br>' +
-        '<b>タグ:</b> ' + '<br>' + tagimage + '<br>' +
-        '<b>備考:</b> ' + poseInfo.remarks + '<br>';
+      return uploadedimage + tagimage + '<br>' + '<p class="br">場所名:' + poseInfo.location + '<br>' +
+        'コンテンツ:' + poseInfo.content + '<br>' +
+        '備考:' + poseInfo.remarks + '</p>'
+        ;
     });
   },
   pointToLayer: function (feature, latlng) {

@@ -17,17 +17,22 @@ body {
 .leaflet-popup-content {
 	font-size: 15px;
 	font-family: 'MyFont', sans-serif;
-	box-shadow: 2px 2px 4px gray;
 }
 
-.leaflet-popup-content .tagimg {
-	margin-left: 25%;
+.br {
+	clear: both;
 }
 
-body {
-	background-color: #EDEDED;
+.leaflet-popup-content img {
+	float: left;
+}
+
+.leaflet-popup-content p {
 	margin: 0;
-	font-family: MyFont;
+}
+
+#uploadedFileName {
+	margin-left: 10%;
 }
 
 #title {
@@ -470,6 +475,10 @@ input#fileinput.calc-prop[name="file"] {
 	#search-bar {
 		top: 3%;
 		left: 5%;
+	}
+
+	#title img {
+		display: none;
 	}
 }
 

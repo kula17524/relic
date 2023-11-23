@@ -92,6 +92,7 @@ sidebarControl.onAdd = function (map) {
           data-conditionalelementvalue="undefined"><label style="color:#333333">file_upload01</label>
           <input id="fileinput" class="calc-prop" data-identifier="file_upload01" data-isrequired="false" type="file" name="file" accept=".jpg">
         </div>
+        <div id="uploadedFileName"></div>
       </div>
       <p>ピンの種類 <span class="required">*</span></p>
       <div class="sideimg">
@@ -277,6 +278,13 @@ function requiredRadio() {
 
   return true;
 }
+
+document.getElementById('fileinput').addEventListener('change', function () {
+  var uploadedFileNameElement = document.getElementById('uploadedFileName');
+  var fileName = this.files[0].name;
+  uploadedFileNameElement.textContent = 'ファイル名: ' + fileName;
+});
+
 
 //画像が入力された際に、位置情報の有無を確認する
 //function gpsCheck(input) {
