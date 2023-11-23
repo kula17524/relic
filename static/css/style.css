@@ -198,33 +198,12 @@ body {
 	transform: translate3d(-7em, 3.2em, 0);
 }
 
-.sidebar {
-	position: fixed;
-	top: 0;
-	right: 0;
-	height: 500px;
-	display: none;
-	width: 400px;
-	background-color: #ffffff;
-	overflow-x: hidden;
-	padding-bottom: 60px;
-	transition: width 0.5s;
-	border-radius: 5%;
-}
 
-.sidebar a:hover {
+.wrapper a:hover {
 	opacity: 0.7;
 }
 
-.sidebar .closebtn {
-	float: left;
-	margin-top: 5%;
-	font-size: 45px;
-	margin-left: 80%;
-	width: 100%;
-}
-
-.sidebar p {
+.wrapper p {
 	float: left;
 	font-size: 25px;
 	width: 90%;
@@ -233,18 +212,18 @@ body {
 	font-family: 'MyFont', sans-serif;
 }
 
-.sidebar .required {
+.wrapper .required {
 	color: red;
 }
 
-/*.sidebar i{
+/*.wrapper i{
     float: left;
     width: 20%;
     height: auto;
     margin-left: 10%;
     color: aqua;
   }*/
-.sidebar .sideimg {
+.wrapper .sideimg {
 	display: flex;
 	flex-wrap: wrap;
 	float: left;
@@ -254,13 +233,13 @@ body {
 
 }
 
-.sidebar .sideimg label {
+.wrapper .sideimg label {
 	width: calc(33.33% - 8px);
 	/* 10pxは間隔として適切な値に調整してください */
 	margin-bottom: 10px;
 }
 
-.sidebar .sideimg img {
+.wrapper .sideimg img {
 	width: 100%;
 	height: auto;
 }
@@ -441,9 +420,10 @@ textarea.calc-prop[name="file"] {
 	font-weight: bold;
 }
 
+/*
 .element[data-element="file_format"] {
 	margin: 10px 20px;
-}
+}*/
 
 .element[data-element="file_upload01"],
 .element[data-element="file_upload02"] {
@@ -453,7 +433,7 @@ textarea.calc-prop[name="file"] {
 .element[data-element="file_format"] {
 	border: 1px solid #ADADAD;
 	padding: 0 20px 20px !important;
-	margin: 20px;
+	/*margin: 20px;*/
 	width: calc(100% - 40px) !important;
 }
 
@@ -464,11 +444,9 @@ textarea.calc-prop[name="file"] {
 
 input#fileinput.calc-prop[name="file"],
 input#fileinput.calc-prop[name="file"] {
-	position: absolute;
 	opacity: 0;
 	cursor: pointer;
 	left: 0;
-	letter-spacing: 22px;
 }
 
 @media (max-width: 600px) {
@@ -499,7 +477,7 @@ input#fileinput.calc-prop[name="file"] {
 		text-align: center;
 	}
 
-	.sidebar {
+	.wrapper {
 		width: 100%;
 	}
 }
