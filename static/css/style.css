@@ -17,6 +17,7 @@ body {
 .leaflet-popup-content {
 	font-size: 15px;
 	font-family: 'MyFont', sans-serif;
+	box-shadow: 2px 2px 4px gray;
 }
 
 .leaflet-popup-content .tagimg {
@@ -476,6 +477,7 @@ input#fileinput.calc-prop[name="file"] {
 	#title img {
 		width: 200px;
 		height: auto;
+		margin-top: 8%;
 	}
 
 	#search-bar {

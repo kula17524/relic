@@ -40,7 +40,7 @@ def get_gps(fname):
         return lat, lon
     except (AttributeError, KeyError, IndexError):
         # 位置情報がない場合
-        raise ValueError
+        raise ValueError("選択された画像には位置情報がありません。別の画像を選択してください。")
 
 if __name__ == "__main__":
     try:
