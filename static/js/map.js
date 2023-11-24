@@ -80,7 +80,11 @@ L.geoJson(features, {
       var uploadedimage = '<img src="../static/img/' + poseInfo.filename + '" alt="アップロード画像" style="width: 50%; height: auto;">';
       var tagimage = '<img class="tagimg" src="../static/ico/' + poseInfo.tagType + '" alt="タグ" style="width: 50%; height: auto;">';
 
-      return uploadedimage + tagimage + '<br>' + '<p class="br">住所:' + poseInfo.address + '<br>' + '<p class="br">場所名:' + poseInfo.location + '<br>' + 'コンテンツ:' + poseInfo.content + '<br>' + '備考:' + poseInfo.remarks + '</p>'
+      // 備考が空または空白文字だけの場合は「無し」を表示
+      var remarks = poseInfo.remarks.trim() || '無し';
+
+      return uploadedimage + tagimage + '<br>' + '<p class="br">住所:' + poseInfo.address + '<br>' + '<p class="br">場所名:' + poseInfo.location + '<br>' + 'コンテンツ:' + poseInfo.content + '<br>' + '備考:' + remarks + '</p>';
+
         ;
     });
   },

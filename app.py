@@ -86,7 +86,7 @@ def upload_file():
                 print(Longtitude)
                 print(Latitude)
 
-                address = gps_info.search_address("dj00aiZpPWhNeTlXMkwwTVFodCZzPWNvbnN1bWVyc2VjcmV0Jng9OWM-", Longtitude,Latitude)
+                address = gps_info.search_address("dj00aiZpPWhNeTlXMkwwTVFodCZzPWNvbnN1bWVyc2VjcmV0Jng9OWM-", Latitude,Longtitude)
 
                 con = sqlite3.connect(DATABESE)
                 con.execute('INSERT INTO Poses VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
