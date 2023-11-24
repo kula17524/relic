@@ -1,5 +1,5 @@
 import os
-from flask import Flask, flash, request, redirect, url_for, send_from_directory, render_template
+from flask import Flask, flash, request, redirect, url_for, send_from_directory, render_template, jsonify
 import flask_cors
 from werkzeug.utils import secure_filename
 import gps_info
@@ -32,11 +32,18 @@ def create_books_table():
 
 Upload_File = 0
 gpsdata = (0, 0)
+check = 0
 
+# ページ読み込み時にチェック状態を渡すAPI
+@app.route('/get_check_status', methods=['GET'])
+def get_check_status():
+    global check
+    return jsonify({'check': check})
 
+# アップロードしたファイルから取得した情報を渡すAPI
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
-    global Upload_File, gpsdata
+    global Upload_File, gpsdata, check
 
     # テーブルを作成
     create_books_table()
@@ -101,6 +108,7 @@ def upload_file():
 
             except ValueError as e:
                 flash(str(e), "error")
+                check = 1
                 return redirect(request.url)
 
             return redirect(request.url)

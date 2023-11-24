@@ -414,22 +414,16 @@ document.getElementById('fileinput').addEventListener('change', function () {
   uploadedFileNameElement.textContent = 'ファイル名: ' + fileName;
 });
 
-//画像が入力された際に、位置情報の有無を確認する
-//function gpsCheck(input) {
-// 位置情報の取得
-//var file = input.files[0];
-//var reader = new FileReader();
-
-//reader.onload = function (e) {
-//var exif = EXIF.readFromBinaryFile(new BinaryFile(e.target.result));
-//var hasLocationInfo = exif && exif.GPSLatitude && exif.GPSLongitude;
-
-//if (!hasLocationInfo) {
-//swal({
-//title: "画像に位置情報がありません！",
-//icon: "error",
-//button: "OK",
-//});
-//}
-//};
-//}
+fetch('/get_check_status')
+  .then(response => response.json())
+  .then(data => {
+    if (data.check === 1) {
+      swal({
+        title: "画像に位置情報がないよ！",
+        icon: "error",
+        button: "OK",
+      });
+      // サーバー側で状態をリセット
+      fetch('/reset_check_status');
+    }
+});
